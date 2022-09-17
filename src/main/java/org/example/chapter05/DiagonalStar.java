@@ -2,77 +2,47 @@ package org.example.chapter05;
 
 public class DiagonalStar {
 
-    //Write a method named printSquareStar with one parameter of type int named number.
+
     public static void printSquareStar(int number) {
 
-        //If number is < 5, the method should print "Invalid Value".
+        /*
+            If number is < 5, the method should print "Invalid Value".
+         */
         if (number < 5) {
             System.out.println("Invalid Value");
 
         } else {
 
             /*
-            printSquareStar(5); should print the following:
-            *****
-            ** **
-            * * *
-            ** **
-            *****
-             */
+                The method should print diagonals to generate a rectangular pattern composed of stars (*).
+            */
 
-            int midPoint = number / 2;
-            boolean isNumberEven = (number % 2 == 0);
-            if (!isNumberEven) midPoint++;
+            /*
+                For each row or column, stars are printed based on four conditions (Read them carefully):
 
-            int lineNumber = 1;
-            int control = 0;
-            while (lineNumber <= number) {
+                    * In the first or last row
 
-                if (lineNumber == 1 || lineNumber == number) {
-                    //first and last line
-                    printFullLine(number);
+                    * In the first or last column
 
-                } else {
+                    * When the row number equals the column number
 
-                    if (lineNumber <= midPoint) {
-                        control++;
-                        printLineWithSpace(number, control);
+                    * When the column number equals rowCount - currentRow + 1 (where currentRow is current row number)
+            */
+            for (int row = 1; row <= number; row++) {
+                for (int col = 1; col <= number; col++) {
 
-                    } else if (lineNumber == (midPoint + 1) && isNumberEven) {
-                        //print the previous line w/o increment
-                        printLineWithSpace(number, control);
-
-                    } else if (lineNumber > midPoint) {
-                        control--;
-                        printLineWithSpace(number, control);
+                    if ((row == 1 || row == number) || (col == 1 || col == number) || (row == col) || (col == (number - row + 1))) {
+                        System.out.print("*");
+                    } else {
+                        System.out.print(" ");
                     }
-                }
 
-                lineNumber++;
-            }
-        }//while loop
-
-        System.out.println();
-    }
-
-
-    public static void printFullLine(int number) {
-        for (int i = 1; i <= number; i++) {
-            System.out.print("*");
+                }//for
+                System.out.println();
+            }//
         }
-        System.out.println();
+
     }
 
-    public static void printLineWithSpace(int number, int controlNumber) {
-
-        for (int i = 1; i <= number; i++) {
-            if (i == 1 || i == (1 + controlNumber) || i == (number - controlNumber) || i == number) {
-                System.out.print("*");
-            } else {
-                System.out.print(" ");
-            }
-        }
-        System.out.println();
-    }
 
 }
