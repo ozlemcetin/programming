@@ -19,6 +19,10 @@ public class BankAccount {
         System.out.println("Empty constructor is called.");
     }
 
+    public BankAccount(String customerName, String customerEmail, String customerPhone) {
+        this("-1", 0d, customerName, customerEmail, customerPhone);
+    }
+
     public BankAccount(String accountNumber, double balance, String customerName, String customerEmail, String customerPhone) {
         this.accountNumber = accountNumber;
         this.balance = balance;
